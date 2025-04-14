@@ -43,15 +43,11 @@ export default function LoginForm() {
       setSubmitting(true);
       setError("");
 
-      console.log(values, "valuesssss");
-
       const res = await signIn("credentials", {
         redirect: false,
         email: values.email,
         password: values.password,
       });
-
-      console.log(res, "resss");
 
       if (res?.error) {
         setError("Geçersiz email veya şifre");
@@ -76,14 +72,17 @@ export default function LoginForm() {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="">
+      <form
+        onSubmit={form.handleSubmit(onSubmit)}
+        className="flex flex-col gap-10 py-10"
+      >
         <FormField
           control={form.control}
           name="email"
           render={({ field }) => (
-            <FormItem className="mb-4 lg:mb-8 w-full">
+            <FormItem className="w-full">
               <FormControl>
-                <Input placeholder={"Email"} {...field} />
+                <Input placeholder={"Email"} {...field} className="bg-white" />
               </FormControl>
               <FormMessage className="text-xs" />
             </FormItem>
@@ -93,10 +92,11 @@ export default function LoginForm() {
           control={form.control}
           name="password"
           render={({ field }) => (
-            <FormItem className="mb-3 lg:mb-4 w-full">
+            <FormItem className="w-full">
               <FormControl>
                 <div className="relative">
                   <Input
+                    className="bg-white"
                     placeholder={"Şifre"}
                     {...field}
                     type={showPass ? "text" : "password"}

@@ -1,18 +1,19 @@
-import Navbar from "@/components/navbar/Navbar";
 import "./globals.css";
-import { Toaster } from "sonner";
+import Providers from "@/components/providers/Providers";
+import Navbar from "@/components/navbar/Navbar";
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="en">
       <body>
-        <Navbar />
-        <Toaster />
-        {children}
+        <Providers>
+          <Navbar />
+          {children}
+        </Providers>
       </body>
     </html>
   );
