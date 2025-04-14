@@ -2,6 +2,7 @@ export const dynamic = "force-dynamic";
 import React from "react";
 import LoginForm from "./_components/LoginForm";
 import { Card, CardHeader } from "@/components/ui/card";
+import Link from "next/link";
 
 export default function LoginPage() {
   return (
@@ -11,6 +12,14 @@ export default function LoginPage() {
           Admin Panel Giriş
         </CardHeader>
         <LoginForm />
+        <p className="w-full text-center">
+          Hesabınız yoksa
+          <Link href={"/register"} className="font-bold text-blue-600">
+            {" "}
+            buradan{" "}
+          </Link>
+          kayıt olabilirsiniz.
+        </p>
       </Card>
     </div>
   );

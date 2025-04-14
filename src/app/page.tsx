@@ -1,7 +1,7 @@
+/* eslint-disable @next/next/no-img-element */
 import { Card, CardContent } from "@/components/ui/card";
 import { authOptions } from "@/lib/auth-options";
 import { getServerSession } from "next-auth";
-import Image from "next/image";
 import Link from "next/link";
 
 export default async function Home() {
@@ -11,13 +11,7 @@ export default async function Home() {
     <div className="flex flex-col justify-center items-center w-full min-h-[80dvh]">
       <Card className="bg-indigo-300 p-4">
         <CardContent className="flex flex-col w-full h-full justify-center items-center">
-          <Image
-            src="/uvw-logo-2.png"
-            alt="UVW Logo"
-            width={64}
-            height={64}
-            className="w-full h-full"
-          />
+          <img src="/uvw-logo-2.png" alt="UVW Logo" className="w-full h-full" />
           <p className="text-4xl text-white pt-10 pb-5">
             Admin Paneline Hoş Geldiniz
           </p>

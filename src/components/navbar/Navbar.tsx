@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import {
@@ -12,7 +13,6 @@ import { Home, Menu } from "lucide-react";
 import { DialogTitle } from "../ui/dialog";
 import LogoutButton from "./LogoutBtn";
 import { useSession } from "next-auth/react";
-import Image from "next/image";
 
 export default function Navbar() {
   const { data: session } = useSession();
@@ -63,13 +63,7 @@ export default function Navbar() {
         </SheetContent>
       </Sheet>
       <Link href="/" className="mr-6 hidden lg:flex" prefetch={false}>
-        <Image
-          src="/uvw-logo-2.png"
-          alt="UVW Logo"
-          width={64}
-          height={64}
-          className="h-16 w-16"
-        />
+        <img src="/uvw-logo-2.png" alt="UVW Logo" className="h-16 w-20" />
       </Link>
       <nav className="ml-auto hidden lg:flex gap-6 bg-indigo-300">
         {session && (
@@ -94,13 +88,7 @@ export default function Navbar() {
         )}
       </nav>
       <Link href="/" className="mr-6 flex lg:hidden" prefetch={false}>
-        <Image
-          src="/uvw-logo-2.png"
-          alt="UVW Logo"
-          width={64}
-          height={64}
-          className="h-16 w-16"
-        />
+        <img src="/uvw-logo-2.png" alt="UVW Logo" className="h-16 w-16" />
       </Link>
     </header>
   );
