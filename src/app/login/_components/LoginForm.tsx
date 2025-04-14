@@ -20,7 +20,7 @@ import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
 export default function LoginForm() {
-  const [error, setError] = useState("");
+  const [_error, setError] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [showPass, setShowPass] = useState(false);
   const router = useRouter();
@@ -65,6 +65,7 @@ export default function LoginForm() {
       toast.error("Sunucu hatası", {
         description: "Lütfen daha sonra tekrar deneyin.",
       });
+      console.log(error);
     } finally {
       setSubmitting(false);
     }
@@ -119,8 +120,8 @@ export default function LoginForm() {
           )}
         />
 
-        {error && (
-          <p className="text-xs text-center text-destructive py-4">{error}</p>
+        {_error && (
+          <p className="text-xs text-center text-destructive py-4">{_error}</p>
         )}
 
         <Button type="submit" disabled={submitting} className="w-full">
