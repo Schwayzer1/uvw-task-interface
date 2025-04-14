@@ -11,15 +11,14 @@ import { DialogTitle } from "../ui/dialog";
 
 export default function Navbar() {
   return (
-    <header className="flex h-16 w-full shrink-0 items-center px-4 md:px-6 border-b bg-neutral-200 mb-5">
+    <header className="flex h-20 w-full shrink-0 items-center px-4 md:px-6 border-b bg-indigo-300 mb-5 lg:justify-start justify-between ">
       <Sheet>
         <SheetTrigger asChild>
           <Button variant="outline" size="icon" className="lg:hidden">
             <Menu className="h-6 w-6" />
-            <span className="sr-only">Toggle navigation menu</span>
           </Button>
         </SheetTrigger>
-        <SheetContent side="left" className="bg-neutral-200">
+        <SheetContent side="left" className="bg-indigo-300">
           <SheetHeader className="hidden">
             <DialogTitle className="hidden"></DialogTitle>
           </SheetHeader>
@@ -33,25 +32,27 @@ export default function Navbar() {
               prefetch={false}
             >
               <SheetTrigger className="w-full cursor-pointer">
-                Login
+                Giriş Yap
               </SheetTrigger>
             </Link>
           </div>
         </SheetContent>
       </Sheet>
       <Link href="/" className="mr-6 hidden lg:flex" prefetch={false}>
-        <Home className="h-6 w-6" />
-        <span className="sr-only">Acme Inc</span>
+        <img src="./uvw-logo-2.png" className="h-16 w-16" />
       </Link>
-      <nav className="ml-auto hidden lg:flex gap-6 bg-neutral-200">
+      <nav className="ml-auto hidden lg:flex gap-6 bg-indigo-300">
         <Link
           href="/login"
           className="group inline-flex h-9 w-max items-center justify-center rounded-md bg-white px-4 py-2 text-sm font-medium transition-colors hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:text-gray-900 focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-gray-100/50 data-[state=open]:bg-gray-100/50 dark:bg-gray-950 dark:hover:bg-gray-800 dark:hover:text-gray-50 dark:focus:bg-gray-800 dark:focus:text-gray-50 dark:data-[active]:bg-gray-800/50 dark:data-[state=open]:bg-gray-800/50"
           prefetch={false}
         >
-          Login
+          Giriş Yap
         </Link>
       </nav>
+      <Link href="/" className="mr-6 flex lg:hidden" prefetch={false}>
+        <img src="./uvw-logo-2.png" className="h-16 w-16" />
+      </Link>
     </header>
   );
 }
