@@ -61,9 +61,12 @@ export default function RegisterForm() {
           router.push("/dashboard");
         }
       }
-    } catch (error: any) {
-      setSubmitting(false);
-      setError(error.message);
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        setError(error.message);
+      } else {
+        setError("Bilinmeyen bir hata oluştu");
+      }
     }
   }
 
