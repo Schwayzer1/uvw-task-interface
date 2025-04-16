@@ -1,10 +1,11 @@
 "use client";
 import { Button } from "@/components/ui/button";
-import { Edit, Plus, Trash2 } from "lucide-react";
+import { Edit, Logs, Plus, Trash2 } from "lucide-react";
 import { useSession } from "next-auth/react";
 import { Dispatch, SetStateAction, useState } from "react";
 import TaskDeleteModal from "./TaskDeleteModal";
 import UpdateTaskModal from "./UpdateTaskModal";
+import TaskLogsModal from "./TaskLogsModal";
 
 export default function TaskDetailTable({
   setTaskModal,
@@ -20,6 +21,9 @@ export default function TaskDetailTable({
   const session = useSession();
   const [taskIdToDelete, setTaskIdToDelete] = useState<string | null>(null);
   const [taskToUpdate, setTaskToUpdate] = useState<TaskResponse | null>(null);
+  const [taskLogsModal, setTaskLogsModal] = useState<{
+    taskId: string;
+  } | null>(null);
 
   return (
     <>
@@ -63,16 +67,28 @@ export default function TaskDetailTable({
             {session.data?.user.role === "Developer" && (
               <div className="flex flex-col justify-center items-center gap-y-2 w-full">
                 <div className="flex justify-center items-center gap-x-2">
-                  <Edit className="text-gray-900" />
+                  <Logs
+                    className="text-center text-yellow-600 cursor-pointer"
+                    onClick={() => setTaskLogsModal({ taskId: t._id })}
+                  />
+
+                  <Edit
+                    className="text-center text-indigo-600 cursor-pointer"
+                    onClick={() => setTaskToUpdate(t)}
+                  />
                   <Trash2 className="text-gray-900" />
                 </div>
                 <span className="text-gray-900 opacity-50 text-sm">
-                  Yetkiniz yok
+                  Silmek için yetkiniz yok
                 </span>
               </div>
             )}
             {session.data?.user.role !== "Developer" && (
               <div className="flex justify-center items-center gap-x-2">
+                <Logs
+                  className="text-center text-yellow-600 cursor-pointer"
+                  onClick={() => setTaskLogsModal({ taskId: t._id })}
+                />
                 <Edit
                   className="text-center text-indigo-600 cursor-pointer"
                   onClick={() => setTaskToUpdate(t)}
@@ -102,6 +118,14 @@ export default function TaskDetailTable({
           taskUpdateModal={!!taskToUpdate}
           setTaskUpdateModal={() => setTaskToUpdate(null)}
           userList={userList}
+        />
+      )}
+      {taskLogsModal && (
+        <TaskLogsModal
+          setTaskLogsModal={() => setTaskLogsModal(null)}
+          taskLogsModal={!!taskLogsModal}
+          projectId={projectId}
+          taskId={taskLogsModal.taskId}
         />
       )}
     </>

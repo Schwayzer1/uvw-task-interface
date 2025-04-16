@@ -30,7 +30,6 @@ export async function createTask(
 
     return { success: true };
   } catch (error: any) {
-    console.error("Görev oluşturma hatası:", error.message);
     throw new Error("Görev oluşturulurken bir hata oluştu");
   }
 }

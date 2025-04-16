@@ -27,7 +27,6 @@ export async function createProject(formData: CreateProjectFormSchemaType) {
 
     return { success: true };
   } catch (error: any) {
-    console.error("Proje oluşturma hatası:", error.message);
     throw new Error("Proje oluşturulurken bir hata oluştu");
   }
 }

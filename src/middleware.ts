@@ -18,7 +18,7 @@ export async function middleware(req: NextRequest) {
     return NextResponse.redirect(new URL("/dashboard", req.url));
   }
 
-  const protectedPaths = ["/dashboard", "/projects"];
+  const protectedPaths = ["/dashboard", "/projects", "/project", "/users"];
   const isProtected = protectedPaths.some((path) =>
     req.nextUrl.pathname.startsWith(path)
   );

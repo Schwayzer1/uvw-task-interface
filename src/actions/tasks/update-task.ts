@@ -31,7 +31,6 @@ export async function updateTask(
 
     return { success: true };
   } catch (error: any) {
-    console.error("Görev güncelleme hatası:", error.message);
     throw new Error("Görev güncellenirken bir hata oluştu");
   }
 }
