@@ -20,6 +20,7 @@ export async function getTasksByProjectId(projectId: string) {
 
     return res.data;
   } catch (error) {
+    console.log(error);
     throw new Error("Proje taskları alınırken bir hata oluştu");
   }
 }

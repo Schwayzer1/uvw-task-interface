@@ -18,7 +18,7 @@ export default function ProjectDeleteModal({
   setProjectDeleteModal: Dispatch<SetStateAction<boolean>>;
   projectId: string;
 }) {
-  const [_error, setError] = useState("");
+  const [, setError] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const router = useRouter();
 

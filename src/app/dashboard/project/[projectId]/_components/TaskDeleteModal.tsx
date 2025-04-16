@@ -20,7 +20,7 @@ export default function TaskDeleteModal({
   projectId: string;
   taskId: string;
 }) {
-  const [_error, setError] = useState("");
+  const [, setError] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const router = useRouter();
 

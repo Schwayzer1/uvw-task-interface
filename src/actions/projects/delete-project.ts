@@ -21,7 +21,8 @@ export async function deleteProject(projectId: string) {
       }
     );
     return { success: true };
-  } catch (error: any) {
+  } catch (error) {
+    console.log(error);
     throw new Error("Proje ve görevler silinirken bir hata oluştu");
   }
 }

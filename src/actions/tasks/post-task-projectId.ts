@@ -29,7 +29,8 @@ export async function createTask(
     );
 
     return { success: true };
-  } catch (error: any) {
+  } catch (error) {
+    console.log(error);
     throw new Error("Görev oluşturulurken bir hata oluştu");
   }
 }

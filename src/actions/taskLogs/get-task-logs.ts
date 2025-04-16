@@ -21,7 +21,8 @@ export async function getTaskLogs(projectId: string, taskId: string) {
       }
     );
     return res.data;
-  } catch (error: any) {
+  } catch (error) {
+    console.log(error);
     throw new Error("Proje detayları alınırken bir hata oluştu");
   }
 }

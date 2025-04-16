@@ -62,6 +62,7 @@ export default function LoginForm() {
       }
     } catch (error) {
       setError("Bir hata oluştu. Lütfen tekrar deneyin.");
+      console.log(error);
       toast.error("Sunucu hatası", {
         description: "Lütfen daha sonra tekrar deneyin.",
       });

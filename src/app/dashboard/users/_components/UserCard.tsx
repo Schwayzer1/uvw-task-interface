@@ -1,5 +1,5 @@
 "use client";
-import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
+
 import { Edit } from "lucide-react";
 import { useSession } from "next-auth/react";
 import React, { useState } from "react";

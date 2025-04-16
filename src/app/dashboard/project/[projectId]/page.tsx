@@ -3,12 +3,11 @@ import ProjectDetailTable from "./_components/ProjectDetailTable";
 import { getTasksByProjectId } from "@/actions/tasks/get-tasks-by-projectId";
 import { getAllUser } from "@/actions/auth/get-all-user";
 
-export default async function ProjectDetailPage({
-  params,
-}: {
-  params: { projectId: string };
-}) {
-  const { projectId } = await params;
+type tParams = Promise<{ slug: string[] }>;
+
+export default async function ProjectDetailPage(props: { params: tParams }) {
+  const { slug } = await props.params;
+  const projectId = slug[1];
 
   const project = await getProjectById(projectId);
   const tasks = await getTasksByProjectId(projectId);

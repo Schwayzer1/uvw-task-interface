@@ -26,6 +26,7 @@ export async function getUserProjects() {
 
     return await res.json();
   } catch (error) {
+    console.log(error);
     throw new Error("Projeler alınırken bir hata oluştu");
   }
 }

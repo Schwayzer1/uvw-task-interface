@@ -1,3 +1,4 @@
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 interface TaskResponse {
   _id: string;
   title: string;

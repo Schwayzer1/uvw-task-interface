@@ -18,7 +18,7 @@ export default function ProjectsTable({
             <p className="text-xl font-semibold">Proje Baş. Tarih</p>
             <p className="text-xl font-semibold text-center">Detay</p>
           </div>
-          {allProjects.map((project: any) => (
+          {allProjects.map((project: ProjectResponse) => (
             <div
               key={project._id}
               className="border-b border-black w-full grid grid-cols-5 items-center p-4 gap-2"
