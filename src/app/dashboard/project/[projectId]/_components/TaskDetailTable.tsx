@@ -56,10 +56,20 @@ export default function TaskDetailTable({
             {t.assignedTo ? t.assignedTo.name : "Atanan Yok"}
           </p>
           <p className="text-base font-semibold text-center">
-            <Trash2
-              className="text-center text-red-600 w-full cursor-pointer"
-              onClick={() => setTaskIdToDelete(t._id)}
-            />
+            {session.data?.user.role === "Developer" && (
+              <>
+                <Trash2 className="w-full text-gray-900" />
+                <span className="text-gray-900 opacity-50 text-sm">
+                  Yetkiniz yok
+                </span>
+              </>
+            )}
+            {session.data?.user.role !== "Developer" && (
+              <Trash2
+                className="text-center text-red-600 w-full cursor-pointer"
+                onClick={() => setTaskIdToDelete(t._id)}
+              />
+            )}
           </p>
         </div>
       ))}

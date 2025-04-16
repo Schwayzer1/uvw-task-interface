@@ -6,6 +6,7 @@ import { Trash2 } from "lucide-react";
 import CreateTaskModal from "./CreateTaskModal";
 import TaskDetailTable from "./TaskDetailTable";
 import ProjectDeleteModal from "./ProjectDeleteModal";
+import { useSession } from "next-auth/react";
 
 export default function ProjectDetailTable({
   project,
@@ -19,6 +20,7 @@ export default function ProjectDetailTable({
   const [taskModal, setTaskModal] = useState(false);
   const [projectDeleteModal, setProjectDeleteModal] = useState(false);
   useEffect(() => {}, [tasks]);
+  const session = useSession();
 
   return (
     <>
@@ -43,10 +45,20 @@ export default function ProjectDetailTable({
                 {project.createdAt.split("T")[0]}
               </p>
               <p className="text-base font-semibold text-center">
-                <Trash2
-                  className="w-full text-red-600"
-                  onClick={() => setProjectDeleteModal(true)}
-                />
+                {session.data?.user.role == "Developer" && (
+                  <>
+                    <Trash2 className="w-full text-gray-900" />
+                    <span className="text-gray-900 opacity-50 text-sm">
+                      Yetkiniz yok
+                    </span>
+                  </>
+                )}
+                {session.data?.user.role !== "Developer" && (
+                  <Trash2
+                    className="w-full text-red-600"
+                    onClick={() => setProjectDeleteModal(true)}
+                  />
+                )}
               </p>
             </div>
             <TaskDetailTable
