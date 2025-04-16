@@ -12,10 +12,12 @@ export default function ProjectDetailTable({
   project,
   projectId,
   tasks,
+  userList,
 }: {
   project: ProjectResponse;
   projectId: string;
   tasks: TaskResponse[];
+  userList: UserResponse[];
 }) {
   const [taskModal, setTaskModal] = useState(false);
   const [projectDeleteModal, setProjectDeleteModal] = useState(false);
@@ -65,6 +67,7 @@ export default function ProjectDetailTable({
               setTaskModal={setTaskModal}
               tasks={tasks}
               projectId={projectId}
+              userList={userList}
             />
           </div>
           <ScrollBar orientation="horizontal" />

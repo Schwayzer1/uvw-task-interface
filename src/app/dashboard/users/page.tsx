@@ -12,7 +12,7 @@ export default async function UsersPage() {
     redirect("/dashboard");
   }
   const userList = await getAllUser();
-  console.log(userList, "listtttt");
+
   return (
     <div className="flex flex-col w-full justify-center items-center gap-5">
       <div className="flex flex-col items-center py-10 border border-black w-full max-w-[1440px] px-5 rounded-2xl bg-gray-100 gap-5 justify-between">

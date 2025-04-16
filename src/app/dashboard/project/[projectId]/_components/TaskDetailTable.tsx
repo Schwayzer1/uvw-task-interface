@@ -1,21 +1,25 @@
 "use client";
 import { Button } from "@/components/ui/button";
-import { Plus, Trash2 } from "lucide-react";
+import { Edit, Plus, Trash2 } from "lucide-react";
 import { useSession } from "next-auth/react";
 import { Dispatch, SetStateAction, useState } from "react";
 import TaskDeleteModal from "./TaskDeleteModal";
+import UpdateTaskModal from "./UpdateTaskModal";
 
 export default function TaskDetailTable({
   setTaskModal,
   tasks,
   projectId,
+  userList,
 }: {
   setTaskModal: Dispatch<SetStateAction<boolean>>;
   tasks: TaskResponse[];
   projectId: string;
+  userList: UserResponse[];
 }) {
   const session = useSession();
   const [taskIdToDelete, setTaskIdToDelete] = useState<string | null>(null);
+  const [taskToUpdate, setTaskToUpdate] = useState<TaskResponse | null>(null);
 
   return (
     <>
@@ -55,22 +59,31 @@ export default function TaskDetailTable({
           <p className="text-base font-semibold">
             {t.assignedTo ? t.assignedTo.name : "Atanan Yok"}
           </p>
-          <p className="text-base font-semibold text-center">
+          <div className="text-base font-semibold text-center">
             {session.data?.user.role === "Developer" && (
-              <>
-                <Trash2 className="w-full text-gray-900" />
+              <div className="flex flex-col justify-center items-center gap-y-2 w-full">
+                <div className="flex justify-center items-center gap-x-2">
+                  <Edit className="text-gray-900" />
+                  <Trash2 className="text-gray-900" />
+                </div>
                 <span className="text-gray-900 opacity-50 text-sm">
                   Yetkiniz yok
                 </span>
-              </>
+              </div>
             )}
             {session.data?.user.role !== "Developer" && (
-              <Trash2
-                className="text-center text-red-600 w-full cursor-pointer"
-                onClick={() => setTaskIdToDelete(t._id)}
-              />
+              <div className="flex justify-center items-center gap-x-2">
+                <Edit
+                  className="text-center text-indigo-600 cursor-pointer"
+                  onClick={() => setTaskToUpdate(t)}
+                />
+                <Trash2
+                  className="text-center text-red-600 cursor-pointer"
+                  onClick={() => setTaskIdToDelete(t._id)}
+                />{" "}
+              </div>
             )}
-          </p>
+          </div>
         </div>
       ))}
 
@@ -80,6 +93,15 @@ export default function TaskDetailTable({
           projectId={projectId}
           taskDeleteModal={!!taskIdToDelete}
           setTaskDeleteModal={() => setTaskIdToDelete(null)}
+        />
+      )}
+      {taskToUpdate && (
+        <UpdateTaskModal
+          task={taskToUpdate}
+          projectId={projectId}
+          taskUpdateModal={!!taskToUpdate}
+          setTaskUpdateModal={() => setTaskToUpdate(null)}
+          userList={userList}
         />
       )}
     </>
