@@ -7,6 +7,9 @@ export default function ProjectsTable({
 }: {
   allProjects: ProjectResponse[];
 }) {
+  if (allProjects.length) {
+    return null;
+  }
   return (
     <div className="flex flex-col items-center py-10 border border-black w-full max-w-6xl px-5 rounded-2xl bg-indigo-50 gap-5 justify-between">
       <ScrollArea className="w-full overflow-x-auto">
