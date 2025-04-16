@@ -2,7 +2,11 @@ import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import Link from "next/link";
 import React from "react";
 
-export default function ProjectsTable({ allProjects }: { allProjects: any }) {
+export default function ProjectsTable({
+  allProjects,
+}: {
+  allProjects: ProjectResponse[];
+}) {
   return (
     <div className="flex flex-col items-center py-10 border border-black w-full max-w-6xl px-5 rounded-2xl bg-indigo-50 gap-5 justify-between">
       <ScrollArea className="w-full overflow-x-auto">

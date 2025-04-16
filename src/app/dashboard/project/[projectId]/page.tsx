@@ -3,7 +3,7 @@ export default async function ProjectDetailPage({
 }: {
   params: { projectId: string };
 }) {
-  const { projectId } = await params;
+  const { projectId } = params;
 
   return (
     <div className="mx-auto flex max-w-screen-2xl flex-col gap-4 px-5 pt-16 lg:flex-row lg:items-start">
