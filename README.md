@@ -10,7 +10,7 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 ---
 
 email : admin@admin.com
-şifre : 123456
+şifre : 123456a
 
 ---
 
