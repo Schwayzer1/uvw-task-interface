@@ -2,35 +2,73 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Getting Started
 
-First, run the development server:
+-npm install
+-npm run dev
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Admin kullanıcı bilgileri
+
+---
+
+email : admin@admin.com
+şifre : 123456
+
+---
+
+```md
+# UVW Mühendislik - Görev Yönetim Frontend (Next.js)
+
+Bu proje, kullanıcıların projeleri ve görevleri yönetebildiği bir dashboard arayüzüdür. Next.js ile geliştirilmiş, Tailwind CSS ile stillendirilmiştir.
+
+---
+
+## 🚀 Kullanılan Teknolojiler
+
+- **Next.js 15 (App Router)**
+- **React 19**
+- **Tailwind CSS**
+- **TypeScript**
+- **next-auth** ile oturum yönetimi
+- **Zod + React Hook Form** ile form validasyonu
+- **Axios** ile API istekleri
+- **Shadcn** ile Komponent Kütüphanesi
+- **Lucide React** (ikonlar)
+- **Sonner** (bildirimler)
+- **SSR + CSR hibrit yaklaşımı**
+
+---
+
+## 🧱 Sayfa Yapısı ve Rotalar
+
+- `/login` – Giriş sayfası
+- `/register` – Kayıt sayfası
+- `/dashboard` – Projelerin listelendiği panel
+- `/dashboard/users` – Kayıtlı kullanıcı listesi ve rol güncelleme
+- `/dashboard/project/create` – Yeni Proje oluşturma sayfası
+- `/dashboard/project/[projectId]` – Proje detay ve görev listesi ve taskların listelendiği güncellendiği bölüm
+
+---
+
+## ✨ Ek Özellik: Görev Güncelleme Logları
+
+- Her görevin geçmiş değişiklikleri `TaskLogsModal` içinde görüntülenebilir.
+- Loglar, kullanıcı adı ve tarih bilgisiyle gösterilir.
+
+## 🧪 Test Senaryosu Örneği (manuel)
+
+- Bir görev güncellendiğinde, görev detayına girerek yapılan değişiklik loglarını görebilirsiniz.
+- Admin/Manager dışında Developer rolü görev silemez veya güncelleyemez.
+
+## 🌐 Oturum Yönetimi
+
+- `next-auth` kullanılarak JWT tabanlı oturum yönetimi yapılır.
+- `SessionProvider` ile global context üzerinden kullanıcı bilgisi erişilebilir.
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🛠 Ortam Değişkenleri `.env`
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```env
+NEXT_PUBLIC_API_URL=http://localhost:3000
+NEXTAUTH_SECRET=sch123
+NEXTAUTH_URL=http://localhost:3001
+NEXT_PUBLIC_BASE_URL=http://localhost:3001
+```
