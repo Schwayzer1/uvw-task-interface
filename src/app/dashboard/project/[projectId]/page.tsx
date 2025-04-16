@@ -11,7 +11,6 @@ export default async function ProjectDetailPage({
 
   const project = await getProjectById(projectId);
   const tasks = await getTasksByProjectId(projectId);
-  console.log(tasks);
 
   return (
     <div className="mx-auto flex pt-16 justify-center lg:items-start">

@@ -5,6 +5,7 @@ import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { Trash2 } from "lucide-react";
 import CreateTaskModal from "./CreateTaskModal";
 import TaskDetailTable from "./TaskDetailTable";
+import ProjectDeleteModal from "./ProjectDeleteModal";
 
 export default function ProjectDetailTable({
   project,
@@ -16,6 +17,7 @@ export default function ProjectDetailTable({
   tasks: TaskResponse[];
 }) {
   const [taskModal, setTaskModal] = useState(false);
+  const [projectDeleteModal, setProjectDeleteModal] = useState(false);
   useEffect(() => {}, [tasks]);
 
   return (
@@ -41,10 +43,17 @@ export default function ProjectDetailTable({
                 {project.createdAt.split("T")[0]}
               </p>
               <p className="text-base font-semibold text-center">
-                <Trash2 className="w-full text-red-600" />
+                <Trash2
+                  className="w-full text-red-600"
+                  onClick={() => setProjectDeleteModal(true)}
+                />
               </p>
             </div>
-            <TaskDetailTable setTaskModal={setTaskModal} tasks={tasks} />
+            <TaskDetailTable
+              setTaskModal={setTaskModal}
+              tasks={tasks}
+              projectId={projectId}
+            />
           </div>
           <ScrollBar orientation="horizontal" />
         </ScrollArea>
@@ -53,6 +62,11 @@ export default function ProjectDetailTable({
         taskModal={taskModal}
         setTaskModal={setTaskModal}
         projectId={projectId}
+      />
+      <ProjectDeleteModal
+        projectDeleteModal={projectDeleteModal}
+        projectId={projectId}
+        setProjectDeleteModal={setProjectDeleteModal}
       />
     </>
   );

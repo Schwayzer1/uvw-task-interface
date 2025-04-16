@@ -1,23 +1,28 @@
 "use client";
-
 import { Button } from "@/components/ui/button";
 import { Plus, Trash2 } from "lucide-react";
 import { useSession } from "next-auth/react";
-import React, { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
+import TaskDeleteModal from "./TaskDeleteModal";
 
 export default function TaskDetailTable({
   setTaskModal,
   tasks,
+  projectId,
 }: {
   setTaskModal: Dispatch<SetStateAction<boolean>>;
   tasks: TaskResponse[];
+  projectId: string;
 }) {
   const session = useSession();
+  const [taskIdToDelete, setTaskIdToDelete] = useState<string | null>(null);
+
   return (
     <>
       <h3 className="text-xl font-semibold text-center py-4">
         Proje Görevleri
       </h3>
+
       {(session?.data?.user.role === "Admin" ||
         session?.data?.user.role === "Manager") && (
         <Button
@@ -28,6 +33,7 @@ export default function TaskDetailTable({
           <Plus />
         </Button>
       )}
+
       <div className="border-b border-black w-full grid grid-cols-6 items-center p-4 gap-2">
         <p className="text-xl font-semibold">Görev Adı</p>
         <p className="text-xl font-semibold">Görev Açıklaması</p>
@@ -36,6 +42,7 @@ export default function TaskDetailTable({
         <p className="text-xl font-semibold">Atanan Kişi</p>
         <p className="text-xl font-semibold text-center">İşlemler</p>
       </div>
+
       {tasks.map((t) => (
         <div
           className="border-b border-black w-full grid grid-cols-6 items-center p-4 gap-2"
@@ -49,10 +56,22 @@ export default function TaskDetailTable({
             {t.assignedTo ? t.assignedTo.name : "Atanan Yok"}
           </p>
           <p className="text-base font-semibold text-center">
-            <Trash2 className="text-center text-red-600 w-full" />
+            <Trash2
+              className="text-center text-red-600 w-full cursor-pointer"
+              onClick={() => setTaskIdToDelete(t._id)}
+            />
           </p>
         </div>
       ))}
+
+      {taskIdToDelete && (
+        <TaskDeleteModal
+          taskId={taskIdToDelete}
+          projectId={projectId}
+          taskDeleteModal={!!taskIdToDelete}
+          setTaskDeleteModal={() => setTaskIdToDelete(null)}
+        />
+      )}
     </>
   );
 }
