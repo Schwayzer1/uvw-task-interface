@@ -14,8 +14,9 @@ export default async function UsersPage() {
   const userList = await getAllUser();
   console.log(userList, "listtttt");
   return (
-    <>
+    <div className="flex flex-col w-full justify-center items-center gap-5">
       <div className="flex flex-col items-center py-10 border border-black w-full max-w-[1440px] px-5 rounded-2xl bg-gray-100 gap-5 justify-between">
+        <h3 className="text-3xl font-semibold">Kayıtlı Kullanıcı Listesi</h3>
         <ScrollArea className="w-full overflow-x-auto">
           <div className="min-w-[900px]">
             <div className="border border-black w-full grid grid-cols-4 items-center p-4 rounded-2xl gap-2">
@@ -31,6 +32,6 @@ export default async function UsersPage() {
           <ScrollBar orientation="horizontal" />
         </ScrollArea>
       </div>
-    </>
+    </div>
   );
 }
