@@ -65,7 +65,6 @@ export default function LoginForm() {
       toast.error("Sunucu hatası", {
         description: "Lütfen daha sonra tekrar deneyin.",
       });
-      console.log(error);
     } finally {
       setSubmitting(false);
     }

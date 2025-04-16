@@ -26,7 +26,6 @@ export async function updateUserRole(
     );
     return { success: true };
   } catch (error: any) {
-    console.log(error.message);
     throw new Error("Rol değiştirilken hata oluştu");
   }
 }

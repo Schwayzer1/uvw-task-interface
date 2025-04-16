@@ -18,7 +18,6 @@ export async function getAllUser() {
     });
     return res.data;
   } catch (error: any) {
-    console.log(error.message);
     throw new Error("Kullanıcılar alınırken bir hata oluştu");
   }
 }

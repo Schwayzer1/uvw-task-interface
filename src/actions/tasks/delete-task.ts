@@ -22,7 +22,6 @@ export async function deleteTask(projectId: string, taskId: string) {
     );
     return { success: true };
   } catch (error: any) {
-    console.log(error.message);
     throw new Error("Görev silinirken bir hata oluştu");
   }
 }
